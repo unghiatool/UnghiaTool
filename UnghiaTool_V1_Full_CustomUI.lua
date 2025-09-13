@@ -1,86 +1,82 @@
--- Unghia Tool V1 - Full Script với UI tự code (Instance.new)
+-- Code_Scprit.lua
+-- Unghia Tool V1 - UI Fluent Version
 
--- UI Setup
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "UnghiaUI"
-ScreenGui.Parent = game.CoreGui
+-- // Load Fluent
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
-local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 300, 0, 250)
-Frame.Position = UDim2.new(0.3, 0, 0.3, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Frame.Active = true
-Frame.Draggable = true
-Frame.Parent = ScreenGui
+-- // Window Setup
+local Window = Fluent:CreateWindow({
+    Title = "UnghiaTool V1",
+    SubTitle = "Unghia UI",
+    TabWidth = 120,
+    Size = UDim2.fromOffset(580, 350),
+    Acrylic = true,
+    Theme = "Dark"
+})
 
-local Title = Instance.new("TextLabel")
-Title.Text = "Unghia Tool V1"
-Title.Size = UDim2.new(1, 0, 0, 30)
-Title.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.Font = Enum.Font.SourceSansBold
-Title.TextSize = 20
-Title.Parent = Frame
+-- Tabs
+local MainTab = Window:AddTab({ Title = "Main", Icon = "rbxassetid://7734053495" })
+local ESPTab = Window:AddTab({ Title = "ESP", Icon = "rbxassetid://7734068321" })
+local ServerTab = Window:AddTab({ Title = "Server", Icon = "rbxassetid://7734016041" })
 
--- Button helper
-local function CreateButton(text, order, callback)
-    local btn = Instance.new("TextButton")
-    btn.Text = text
-    btn.Size = UDim2.new(1, -20, 0, 30)
-    btn.Position = UDim2.new(0, 10, 0, 40 + (order * 40))
-    btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    btn.Font = Enum.Font.SourceSans
-    btn.TextSize = 18
-    btn.Parent = Frame
-    btn.MouseButton1Click:Connect(callback)
-    return btn
-end
+-- // Main Tab
+local AutoFarmToggle = MainTab:AddToggle("AutoFarm", {
+    Title = "Auto Farm",
+    Default = false,
+    Callback = function(v)
+        _G.AutoFarm = v
+    end
+})
 
--- Auto Farm toggle
-local autofarm = false
-local AutoFarmBtn = CreateButton("Auto Farm: OFF", 0, function()
-    autofarm = not autofarm
-    AutoFarmBtn.Text = "Auto Farm: " .. (autofarm and "ON" or "OFF")
-    _G.AutoFarm = autofarm
-end)
+-- // ESP Tab
+local IslandESPToggle = ESPTab:AddToggle("IslandESP", {
+    Title = "Island ESP",
+    Default = false,
+    Callback = function(v)
+        IslandESP = v
+    end
+})
 
--- Island ESP toggle
-local islandesp = false
-local IslandESPBtn = CreateButton("Island ESP: OFF", 1, function()
-    islandesp = not islandesp
-    IslandESPBtn.Text = "Island ESP: " .. (islandesp and "ON" or "OFF")
-    IslandESP = islandesp
-end)
+local PlayerESPToggle = ESPTab:AddToggle("PlayerESP", {
+    Title = "Player ESP",
+    Default = false,
+    Callback = function(v)
+        ESPPlayer = v
+    end
+})
 
--- Player ESP toggle
-local playeresp = false
-local PlayerESPBtn = CreateButton("Player ESP: OFF", 2, function()
-    playeresp = not playeresp
-    PlayerESPBtn.Text = "Player ESP: " .. (playeresp and "ON" or "OFF")
-    ESPPlayer = playeresp
-end)
+local ChestESPToggle = ESPTab:AddToggle("ChestESP", {
+    Title = "Chest ESP",
+    Default = false,
+    Callback = function(v)
+        ChestESP = v
+    end
+})
 
--- Chest ESP toggle
-local chestesp = false
-local ChestESPBtn = CreateButton("Chest ESP: OFF", 3, function()
-    chestesp = not chestesp
-    ChestESPBtn.Text = "Chest ESP: " .. (chestesp and "ON" or "OFF")
-    ChestESP = chestesp
-end)
+local FruitESPToggle = ESPTab:AddToggle("FruitESP", {
+    Title = "Devil Fruit ESP",
+    Default = false,
+    Callback = function(v)
+        DevilFruitESP = v
+    end
+})
 
--- Devil Fruit ESP toggle
-local fruitesp = false
-local FruitESPBtn = CreateButton("Devil Fruit ESP: OFF", 4, function()
-    fruitesp = not fruitesp
-    FruitESPBtn.Text = "Devil Fruit ESP: " .. (fruitesp and "ON" or "OFF")
-    DevilFruitESP = fruitesp
-end)
+-- // Server Tab
+local ServerHopBtn = ServerTab:AddButton({
+    Title = "Server Hop",
+    Description = "Teleport to another server",
+    Callback = function()
+        Hop()
+    end
+})
 
--- Server Hop button
-local ServerHopBtn = CreateButton("Server Hop", 5, function()
-    Hop()
-end)
+-- // Notifications
+Fluent:Notify({
+    Title = "Unghia Tool V1",
+    Content = "Loaded with Fluent UI!",
+    Duration = 5
+})
+
 
 
 -- ============================================
