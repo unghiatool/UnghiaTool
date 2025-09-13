@@ -1,19 +1,17 @@
--- Unghia Tool V1 - Script Hoàn Chỉnh
-
--- Load UI Library
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
 local Window = Fluent:CreateWindow({
     Title = "UnghiaScript",
     SubTitle = "by UnghiaTool",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = true,
     Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+    MinimizeKey = Enum.KeyCode.LeftControl
 })
--- Tab Main
+
 local Main = Window:AddTab({ Title = "Main", Icon = "" })
 
 local Options = Fluent.Options
@@ -26,8 +24,7 @@ Main:AddToggle({
     end    
 })
 
--- Tab ESP
-local ESPTab = Window:MakeTab({ Title = "ESP", Icon = "" })
+local ESPTab = Window:AddTab({ Title = "ESP", Icon = "" })
 
 ESPTab:AddToggle({
     Name = "Island ESP",
@@ -61,8 +58,7 @@ ESPTab:AddToggle({
     end    
 })
 
--- Tab Server
-local ServerTab = Window:MakeTab({ Title = "Server", Icon = "" })
+local ServerTab = Window:AddTab({ Title = "Server", Icon = "" })
 
 ServerTab:AddButton({
     Name = "Server Hop",
@@ -11629,4 +11625,3 @@ spawn(function()
         end
     end)
 end)
-SaveManager:LoadAutoloadConfig()
