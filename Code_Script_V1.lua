@@ -11629,5 +11629,4 @@ spawn(function()
         end
     end)
 end)
-
-Fluent:init()
+SaveManager:LoadAutoloadConfig()
