@@ -2,12 +2,12 @@
 -- Unghia Tool V1 - UI Fluent Version
 
 -- // Load Fluent
-local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/source.lua"))()
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
 -- // Window Setup
 local Window = Fluent:CreateWindow({
-    Title = "Unghia Tool V1",
-    SubTitle = "Fluent UI",
+    Title = "UnghiaTool V1",
+    SubTitle = "Unghia UI",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 350),
     Acrylic = true,
