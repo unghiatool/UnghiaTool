@@ -8612,27 +8612,24 @@ spawn(function()
 end
 end)
 
-spawn(function()
-pcall(function()
-    while wait() do
+task.spawn(function()
+    while task.wait(1) do
         if _G.AutoEliteHunter then
-            if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+            local QuestGui = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
+            if QuestGui.Visible == true then
                 Fluent:Notify({
-                    Title = "UnghiaTool(Noitification)",
-                    Content = "[EN] : Please cancel the farrm level quest (if any)",
-                    SubContent = "SubContent", -- Optional
-                    Duration = 9 -- Set to nil to make the notification not disappear
+                    Title = "UnghiaTool (Notification)",
+                    Content = "[EN] Please cancel the farm level quest (if any)",
+                    Duration = 9
                 })
                 Fluent:Notify({
-                    Title = "UnghiaTool(Noitification)",
-                    Content = "[VN] : Làm ơn hủy nhiệm vụ farrm level(nếu có)",
-                    SubContent = "SubContent", -- Optional
-                    Duration = 9 -- Set to nil to make the notification not disappear
+                    Title = "UnghiaTool (Notification)",
+                    Content = "[VN] Làm ơn hủy nhiệm vụ farm level (nếu có)",
+                    Duration = 9
                 })
             end
         end
     end
-end)
 end)
 
 spawn(function()
@@ -11625,3 +11622,4 @@ spawn(function()
         end
     end)
 end)
+
